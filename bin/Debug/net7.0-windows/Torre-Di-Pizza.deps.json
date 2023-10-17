@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Torre-Di-Pizza/1.0.0": {
+        "runtime": {
+          "Torre-Di-Pizza.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Torre-Di-Pizza/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
