@@ -13,3 +13,6 @@ C:\Users\Grégory\Projet\Torre-Di-Pizza\obj\Debug\net7.0-windows\refint\Torre-Di
 C:\Users\Grégory\Projet\Torre-Di-Pizza\obj\Debug\net7.0-windows\Torre-Di-Pizza.pdb
 C:\Users\Grégory\Projet\Torre-Di-Pizza\obj\Debug\net7.0-windows\Torre-Di-Pizza.genruntimeconfig.cache
 C:\Users\Grégory\Projet\Torre-Di-Pizza\obj\Debug\net7.0-windows\ref\Torre-Di-Pizza.dll
+c:\Users\Grégory\Projet\Torre-Di-Pizza\bin\Debug\net7.0-windows\RabbitMQ.Client.dll
+c:\Users\Grégory\Projet\Torre-Di-Pizza\obj\Debug\net7.0-windows\Torre-Di-Pizza.csproj.CopyComplete
+C:\Users\Grégory\Projet\Torre-Di-Pizza\bin\Debug\net7.0-windows\Newtonsoft.Json.dll

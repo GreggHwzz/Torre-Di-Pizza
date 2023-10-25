@@ -1,11 +1,8 @@
-﻿namespace Torre_Di_Pizza;
+namespace Torre_Di_Pizza;
 
-partial class Form1
+partial class Form2
 {
-    /// <summary>
-    ///  Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
+     private System.ComponentModel.IContainer components = null;
 
     /// <summary>
     ///  Clean up any resources being used.
@@ -32,13 +29,11 @@ partial class Form1
     {
         this.components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(500, 700);
+        this.ClientSize = new System.Drawing.Size(870, 450);
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.MaximizeBox = false;
-        this.Text = "Torre Di Pizza - Client";
+        this.Text = "Torre Di Pizza - Clerk";
     }
 
     #endregion
 }
-
-
