@@ -15,20 +15,23 @@ namespace Torre_Di_Pizza
         public Form2 form2;
         public event Action OrderRetrieved;
         public event Action NotifyContactClient;
+        public event Action<OrderDetails> OrderStatus;
         private ListView orderListView = new ListView();
         private Button retrieveOrderButton = new Button();
+        private Button contactClientButton = new Button();
+        private OrderDetails selectedOrder = null;
+        
         public Form3(Form2 form2, Form1 form1)
         {
         this.form1 = form1;  // Stockez une référence à Form1
         this.form2 = form2;
         InitializeComponent();
-        InitializeOrderListView();
-
-        
+        InitializeOrderListView();  
         }
 
         private void InitializeOrderListView()
         {
+            orderListView.Visible = true;
             orderListView.Bounds = new Rectangle(10, 10, 600, 150);
             retrieveOrderButton.Location = new Point(10, orderListView.Bottom + 20);
 
@@ -42,48 +45,53 @@ namespace Torre_Di_Pizza
             // D'autres propriétés de la ListView
             orderListView.View = View.Details;
             orderListView.FullRowSelect = true;
+            this.Controls.Add(orderListView);
 
             retrieveOrderButton.Text = "Récupérer la commande";
             retrieveOrderButton.Click += RetrieveOrderButton_Click;
-
-            this.Controls.Add(orderListView);
+            
             this.Controls.Add(retrieveOrderButton);
+
+            contactClientButton.Location = new Point(retrieveOrderButton.Right + 10, orderListView.Bottom + 20);
+            contactClientButton.Text = "Contacter le client";
+            contactClientButton.Click += ContactClientButton_Click;
+
+            this.Controls.Add(contactClientButton);
         }
+
 
         public void ReceiveOrderFromForm2(OrderDetails order)
         {
-            this.Invoke((MethodInvoker)delegate 
-            {
-                ListViewItem item = new ListViewItem($"{order.FirstName} {order.LastName}");
-                item.SubItems.Add(order.Address);
-                item.SubItems.Add(order.PhoneNumber);
-                item.SubItems.Add(order.TotalPrice.ToString("C"));
-                item.SubItems.Add(string.Join(", ", order.Pizzas));
-                orderListView.Items.Add(item);
-            });
+            MessageBox.Show("New order !");
+            ListViewItem item = new ListViewItem($"{order.FirstName} {order.LastName}");
+            item.SubItems.Add(order.Address);
+            item.SubItems.Add(order.PhoneNumber);
+            item.SubItems.Add(order.TotalPrice.ToString("C"));
+            item.SubItems.Add(string.Join(", ", order.Pizzas));
+
+            orderListView.Items.Add(item);
+            orderListView.Refresh();
         }
 
         public void RetrieveOrderButton_Click(object sender, EventArgs e)
         {
-            if (retrieveOrderButton.Text == "Récupérer la commande")
+            if (orderListView.SelectedItems.Count == 0)
             {
-                if (orderListView.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Veuillez sélectionner une commande.");
-                    return;
-                }
-
-                orderListView.SelectedItems[0].Remove();
-                retrieveOrderButton.Text = "Contacter le client";
-            }
-            else if (retrieveOrderButton.Text == "Contacter le client")
-            {
-                // Ici, vous pouvez ajouter le code pour contacter le client si nécessaire.
-                MessageBox.Show("Contactez le client.");
-                retrieveOrderButton.Text = "Récupérer la commande";
-                NotifyContactClient?.Invoke();
-            }
+                MessageBox.Show("Veuillez sélectionner une commande.");
+                return;
+         }
+            selectedOrder = orderListView.SelectedItems[0].Tag as OrderDetails;
+            OrderStatus?.Invoke(selectedOrder);
         }
+
+   
+
+    public void ContactClientButton_Click(object sender, EventArgs e)
+    {
+        // Ici, vous pouvez ajouter le code pour contacter le client si nécessaire.
+        MessageBox.Show("Contactez le client");
+        NotifyContactClient?.Invoke();
+    }
 
         public void RemoveOrder()
         {

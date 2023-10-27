@@ -20,12 +20,11 @@ namespace Torre_Di_Pizza
             // Créer les instances de vos forms
             Form1 form1 = new Form1();
             Form2 form2 = new Form2(); // Si Form2 dépend de Form1, vous pouvez passer Form1 comme argument
-            Form3 form3 = new Form3(form2,form1); // De même, si Form3 dépend de Form2
+          
 
             form1.Load += (sender, e) =>
             {
                 form2.Show();
-                form3.Show();
             };
 
             // Commencez à exécuter la boucle de message de l'application sur le thread principal

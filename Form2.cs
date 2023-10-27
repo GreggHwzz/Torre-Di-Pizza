@@ -13,11 +13,12 @@ namespace Torre_Di_Pizza
     public partial class Form2 : Form
     {
         public event Action<OrderDetails> OrderTimedOut;
+        public event Action<string> UpdateOrderStatusEvent;
         private ListView listViewOrders = new ListView();
         private Button sendButton = new Button();
         private OrderDetails selectedOrder = null;
         private System.Timers.Timer orderTimer;
-        public Form3 form3;
+        private Form3 form3;
         
         public Form2()
         {
@@ -31,6 +32,8 @@ namespace Torre_Di_Pizza
         form3.OrderRetrieved += Form3_OrderRetrieved;
 
         this.Load += Form2_Load;
+
+        form3.Show();
         }
         
         private void Form2_Load(object sender, EventArgs e)
@@ -104,9 +107,10 @@ namespace Torre_Di_Pizza
                     {
                         items[0].SubItems[5].Text = "Prêt";   // Set order state to "Prêt"
                     }
+                    form3.ReceiveOrderFromForm2(selectedOrder);
+                    selectedOrder = null; 
                 });
-                form3.ReceiveOrderFromForm2(selectedOrder);
-                selectedOrder = null;  // Reset the selected order.
+                
             }
         }
 
