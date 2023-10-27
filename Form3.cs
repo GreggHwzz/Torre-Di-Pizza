@@ -24,10 +24,7 @@ namespace Torre_Di_Pizza
         InitializeComponent();
         InitializeOrderListView();
 
-        if (form2 != null)
-        {
-            form2.OrderTimedOut += Form2_OrderTimedOut;
-        }
+        
         }
 
         private void InitializeOrderListView()
@@ -53,7 +50,7 @@ namespace Torre_Di_Pizza
             this.Controls.Add(retrieveOrderButton);
         }
 
-        private void Form2_OrderTimedOut(OrderDetails order)
+        public void ReceiveOrderFromForm2(OrderDetails order)
         {
             this.Invoke((MethodInvoker)delegate 
             {

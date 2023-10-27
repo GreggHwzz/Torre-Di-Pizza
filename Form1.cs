@@ -337,6 +337,7 @@ namespace Torre_Di_Pizza
             };
 
             SendOrderToForm2(order);
+            
         }
 
         public void DisplayRetrieveButton()
@@ -350,7 +351,5 @@ namespace Torre_Di_Pizza
     // Votre code de sérialisation ici (par exemple, JSON)
             return JsonConvert.SerializeObject(order);
         }
-
-        
     }
 }

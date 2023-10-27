@@ -24,13 +24,19 @@ namespace Torre_Di_Pizza
         InitializeComponent();
         InitializeListView();
         InitializeSendButton();
-        ListenForOrders();
+        
 
         form3 = new Form3(this, null);
 
         form3.OrderRetrieved += Form3_OrderRetrieved;
+
+        this.Load += Form2_Load;
         }
         
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            ListenForOrders();
+        }
         private void InitializeListView()
         {
             listViewOrders.Width = 850;
@@ -99,10 +105,12 @@ namespace Torre_Di_Pizza
                         items[0].SubItems[5].Text = "Prêt";   // Set order state to "Prêt"
                     }
                 });
-                NotifyForm3(selectedOrder);  // Notify Form3 now that the order is ready
+                form3.ReceiveOrderFromForm2(selectedOrder);
                 selectedOrder = null;  // Reset the selected order.
             }
         }
+
+        
 
         private void Form3_OrderRetrieved()
         {
@@ -137,7 +145,7 @@ namespace Torre_Di_Pizza
                 var order = DeserializeOrder(message);
 
                 this.Invoke((MethodInvoker)delegate {
-                    ListViewItem item = new ListViewItem(order.LastName);
+                    ListViewItem item = new ListViewItem(order.LastName+" "+order.FirstName);
                     item.SubItems.Add(order.Address);
                     item.SubItems.Add(order.PhoneNumber);
                     item.SubItems.Add(string.Join(", ", order.Pizzas));
@@ -145,7 +153,8 @@ namespace Torre_Di_Pizza
                     item.SubItems.Add("Payé");   
                     item.Tag = order;
                     listViewOrders.Items.Add(item);
-                    
+
+                    listViewOrders.Refresh();
                 });
             };
 
@@ -153,6 +162,8 @@ namespace Torre_Di_Pizza
                                  autoAck: true,
                                  consumer: consumer);
         }
+
+        
 
         private OrderDetails DeserializeOrder(string message)
         {

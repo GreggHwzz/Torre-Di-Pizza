@@ -8,7 +8,6 @@ namespace Torre_Di_Pizza
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize();
             AppDomain.CurrentDomain.UnhandledException += (sender, e) => 
             {
                 Exception ex = (Exception)e.ExceptionObject;
