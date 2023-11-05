@@ -12,8 +12,6 @@ namespace Torre_Di_Pizza
 {
     public partial class Form2 : Form
     {
-        public event Action<OrderDetails> OrderTimedOut;
-        public event Action<string> UpdateOrderStatusEvent;
         private ListView listViewOrders = new ListView();
         private Button sendButton = new Button();
         private OrderDetails selectedOrder = null;
@@ -46,15 +44,13 @@ namespace Torre_Di_Pizza
             listViewOrders.Height = 300;
             listViewOrders.Location = new Point(10, 10);  
 
-            // Ajoutez des colonnes pour les détails de la commande
-            listViewOrders.Columns.Add("Client", 150);
+            listViewOrders.Columns.Add("Customer", 150);
             listViewOrders.Columns.Add("Adress", 250);
             listViewOrders.Columns.Add("Phone number", 100);
             listViewOrders.Columns.Add("Pizzas", 300);
             listViewOrders.Columns.Add("Price", 50);
             listViewOrders.Columns.Add("State", 100);
 
-            // D'autres propriétés de la ListView
             listViewOrders.View = View.Details;
             listViewOrders.FullRowSelect = true;
 
@@ -63,7 +59,7 @@ namespace Torre_Di_Pizza
 
         private void InitializeSendButton()
         {
-            sendButton.Text = "Start Timer for Selected Order";
+            sendButton.Text = "Send Selected Order in Kitchen";
             sendButton.Width = 200;
             sendButton.Height = 30;
             sendButton.Location = new Point(10, listViewOrders.Bottom + 10);
@@ -80,10 +76,10 @@ namespace Torre_Di_Pizza
             }
 
             var selectedItem = listViewOrders.SelectedItems[0];
-            selectedOrder = selectedItem.Tag as OrderDetails;  // I assume you stored OrderDetails in Tag.
-            selectedItem.SubItems[5].Text = "En cuisine";  
+            selectedOrder = selectedItem.Tag as OrderDetails; 
+            selectedItem.SubItems[5].Text = "Kitchen";  
 
-            if(orderTimer != null)  // Si le timer existe déjà, arrêtez-le et désinscrivez-vous de l'événement
+            if(orderTimer != null)  
             {
                 orderTimer.Stop();
                 orderTimer.Elapsed -= Timer_Elapsed;
@@ -105,7 +101,7 @@ namespace Torre_Di_Pizza
                     Console.WriteLine($"Number of matched items: {items.Count}");
                     if (items.Count > 0)
                     {
-                        items[0].SubItems[5].Text = "Prêt";   // Set order state to "Prêt"
+                        items[0].SubItems[5].Text = "Ready"; 
                     }
                     form3.ReceiveOrderFromForm2(selectedOrder);
                     selectedOrder = null; 
@@ -181,27 +177,11 @@ namespace Torre_Di_Pizza
                 var items = listViewOrders.Items.OfType<ListViewItem>().Where(i => i.Tag == selectedOrder).ToList();
                 if (items.Count > 0)
                 {
-                    items[0].SubItems[5].Text = status;   // Mettez à jour le statut
+                    items[0].SubItems[5].Text = status;  
                 }
             }
         }
 
-        public void SetOrderToContactClient()
-        {
-            if (selectedOrder != null)
-            {
-                var items = listViewOrders.Items.OfType<ListViewItem>().Where(i => i.Tag == selectedOrder).ToList();
-                if (items.Count > 0)
-                    {
-                        items[0].SubItems[5].Text = "Livré";
-                    }
-            }
-        }
-
-        
-        private void NotifyForm3(OrderDetails order)
-        {
-            OrderTimedOut?.Invoke(order);
-        }
+    
     }
 }

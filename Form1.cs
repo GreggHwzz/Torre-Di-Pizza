@@ -45,6 +45,7 @@ namespace Torre_Di_Pizza
         private Button btnResetListBox = new Button();
         private Button btnResetAll = new Button();
         private Button retrievePizzaButton = new Button();
+        private Button sendOrderButton = new Button();
         private TextBox textBoxFirstName = new TextBox();
         private TextBox textBoxLastName = new TextBox();
         private TextBox textBoxAddress = new TextBox();
@@ -55,7 +56,7 @@ namespace Torre_Di_Pizza
         private Label labelAddress = new Label();
         private Label labelPhone = new Label();
 
-        private Form2 form2Instance;  // Ajustez selon votre implémentation
+        private Form2 form2Instance;  
         private Form3 form3Instance; 
         private List<Pizza> pizzas = new List<Pizza>
         {
@@ -83,10 +84,9 @@ namespace Torre_Di_Pizza
         {
             InitializeComponent();
 
-            int spacing = 40;  // espacement entre les composants verticalement
+            int spacing = 40;  
 
-            // Prénom
-            labelFirstName.Text = "Prénom:";
+            labelFirstName.Text = "First Name:";
             labelFirstName.Location = new Point(10, 10);
             this.Controls.Add(labelFirstName);
 
@@ -94,8 +94,7 @@ namespace Torre_Di_Pizza
             textBoxFirstName.Width = 200;
             this.Controls.Add(textBoxFirstName);
 
-            // Nom
-            labelLastName.Text = "Nom:";
+            labelLastName.Text = "Last name:";
             labelLastName.Location = new Point(10, 10 + spacing);
             this.Controls.Add(labelLastName);
 
@@ -103,17 +102,15 @@ namespace Torre_Di_Pizza
             textBoxLastName.Width = 200;
             this.Controls.Add(textBoxLastName);
 
-            // Adresse
-            labelAddress.Text = "Adresse:";
+            labelAddress.Text = "Adress:";
             labelAddress.Location = new Point(10, 10 + spacing * 2);
             this.Controls.Add(labelAddress);
 
             textBoxAddress.Location = new Point(150, 10 + spacing * 2);
             textBoxAddress.Width = 200;
             this.Controls.Add(textBoxAddress);
-
-            // Numéro de téléphone
-            labelPhone.Text = "Numéro:";
+            
+            labelPhone.Text = "Phone number:";
             labelPhone.Location = new Point(10, 10 + spacing * 3);
             this.Controls.Add(labelPhone);
 
@@ -121,7 +118,7 @@ namespace Torre_Di_Pizza
             textBoxPhone.Width = 200;
             this.Controls.Add(textBoxPhone);
 
-            // Placer les boutons de pizzas en dessous des champs
+            
             int rows = 3;
             int cols = 4;
             int btnWidth = 100;
@@ -150,27 +147,21 @@ namespace Torre_Di_Pizza
                 this.Controls.Add(pizzaButton);
             }
 
-            
-
-            // Bouton pour supprimer un article
             btnRemoveItem.Text = "Remove";
-            btnRemoveItem.Location = new Point(320, 290); // Ajustez la position selon vos besoins
+            btnRemoveItem.Location = new Point(320, 290);
             btnRemoveItem.Click += BtnRemoveItem_Click;
             this.Controls.Add(btnRemoveItem);
 
-            // Bouton pour réinitialiser la ListBox
             btnResetListBox.Text = "Clear";
             btnResetListBox.Location = new Point(320, 330); 
             btnResetListBox.Click += BtnResetListBox_Click;
             this.Controls.Add(btnResetListBox);
 
-            // Bouton pour réinitialiser tous les champs
             btnResetAll.Text = "Reset";
             btnResetAll.Location = new Point(320, 370);
             btnResetAll.Click += BtnResetAll_Click;
             this.Controls.Add(btnResetAll);
 
-            // Commande et total
             orderListBox.Bounds = new Rectangle(10, initialY + (btnHeight + btnVerticalSpacing) * rows, 300, 150);
             this.Controls.Add(orderListBox);
 
@@ -178,17 +169,16 @@ namespace Torre_Di_Pizza
             totalPriceLabel.Bounds = new Rectangle(10, orderListBox.Bottom + 10, 300, 25);
             this.Controls.Add(totalPriceLabel);
 
-            // Bouton d'envoi
+
             sendOrderButton.Text = "Send Order";
             sendOrderButton.Bounds = new Rectangle(10, totalPriceLabel.Bottom + 10, 300, 25);
             sendOrderButton.Click += SendOrderButton_Click;
             this.Controls.Add(sendOrderButton);
 
-            //Bouton récuperer
-            retrievePizzaButton.Text = "Récupérer la commande";
+            retrievePizzaButton.Text = "Pick the order";
             retrievePizzaButton.Bounds = new Rectangle(10, sendOrderButton.Bottom + 10, 300, 25);
             retrievePizzaButton.Click += RetrievePizzaButton_Click;
-            retrievePizzaButton.Enabled = false;  // Initially disabled
+            retrievePizzaButton.Enabled = false; 
             this.Controls.Add(retrievePizzaButton);
 
             form2Instance = new Form2();
@@ -202,12 +192,12 @@ namespace Torre_Di_Pizza
         
         private void RetrievePizzaButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Votre commande est prête. Merci de votre achat !");
-            retrievePizzaButton.Enabled = false; // Cachez le bouton après le clic
-            form2Instance.SetOrderToContactClient();
+            MessageBox.Show("Your order is ready. Thanks you for your purchase !");
+            retrievePizzaButton.Enabled = false; 
+            form2Instance.UpdateOrderStatus("Delivered");
             form3Instance.RemoveOrder();
         }
-        private Button sendOrderButton = new Button();
+        
         private void PizzaButton_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
@@ -253,20 +243,7 @@ namespace Torre_Di_Pizza
             UpdateTotalPrice();
         }
 
-        private void ShowRetrieveOrderButton()
-        {
-    // Supposons que votre bouton dans Form1 s'appelle `retrieveOrderButtonForm1`
-            retrievePizzaButton.Visible = true;
-        }
-
-        private void RetrieveOrderButtonForm1_Click(object sender, EventArgs e)
-        {
-    // Mettez à jour le statut dans Form2 et supprimez la commande de Form3
-    // Supposons que votre instance de Form2 soit appelée `form2Instance` et votre instance de Form3 soit `form3Instance`
-            form2Instance.UpdateOrderStatus("Livré");
-            form3Instance.RemoveOrder();
-            retrievePizzaButton.Visible = false; // Cachez le bouton après le clic
-        }
+        
         private void BtnResetAll_Click(object sender, EventArgs e)
         {
             textBoxFirstName.Text = "";
@@ -288,8 +265,8 @@ namespace Torre_Di_Pizza
                 }
             }
 
-            totalPriceLabel.Text = $"Total: {total:C}";  // Utilisez le formatage de devise
-            totalPrice = total;  // Mettez à jour le prix total stocké
+            totalPriceLabel.Text = $"Total: {total:C}";  
+            totalPrice = total; 
         }
 
         private void SendOrderToForm2(OrderDetails order)
@@ -341,15 +318,8 @@ namespace Torre_Di_Pizza
             
         }
 
-        public void DisplayRetrieveButton()
-        {
-            // Assurez-vous d'avoir un bouton pour récupérer la commande
-            retrievePizzaButton.Enabled = true;
-        }
-
         private string SerializeOrder(OrderDetails order)
         {
-    // Votre code de sérialisation ici (par exemple, JSON)
             return JsonConvert.SerializeObject(order);
         }
     }

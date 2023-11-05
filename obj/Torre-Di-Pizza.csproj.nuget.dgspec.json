@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gtall\\Projet\\Pizzeria\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj": {}
+    "C:\\Users\\Grégory\\Projet\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gtall\\Projet\\Pizzeria\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj": {
+    "C:\\Users\\Grégory\\Projet\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gtall\\Projet\\Pizzeria\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj",
+        "projectUniqueName": "C:\\Users\\Grégory\\Projet\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj",
         "projectName": "Torre-Di-Pizza",
-        "projectPath": "C:\\Users\\gtall\\Projet\\Pizzeria\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj",
-        "packagesPath": "C:\\Users\\gtall\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gtall\\Projet\\Pizzeria\\Torre-Di-Pizza\\obj\\",
+        "projectPath": "C:\\Users\\Grégory\\Projet\\Torre-Di-Pizza\\Torre-Di-Pizza.csproj",
+        "packagesPath": "C:\\Users\\Grégory\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Grégory\\Projet\\Torre-Di-Pizza\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gtall\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Grégory\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -68,7 +66,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
