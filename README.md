@@ -31,25 +31,3 @@ To run this project, you will need:
 2. Start by running `Form1` to enter and submit new pizza orders.
 3. Open `Form2`, which will automatically start listening for new orders from the RabbitMQ queue and display them.
 4. Run `Form3` to handle order notifications and to perform customer-related actions.
-
-### Executing Forms
-
-In Visual Studio:
-
-- Set multiple startup projects by going to `Solution Properties -> Common Properties -> Startup Project`.
-- Choose 'Start' action for `Form1`, `Form2`, and `Form3`.
-- Click 'OK', and then start the solution.
-
-Alternatively, you can manually start each form from the Visual Studio debugger or by navigating to the output directory (`/bin/Debug/`) and running the executables directly.
-
-## Contributions
-
-To contribute to this project, please create a fork and submit a pull request with your proposed changes.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
----
-
-**Note**: This README assumes that the user has a basic understanding of Windows Forms applications and RabbitMQ. Adjust the content accordingly based on the target users' expertise level.
