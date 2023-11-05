@@ -59,7 +59,7 @@ namespace Torre_Di_Pizza
 
         private void InitializeSendButton()
         {
-            sendButton.Text = "Send Selected Order in Kitchen";
+            sendButton.Text = "Send the order to the kitchen";
             sendButton.Width = 200;
             sendButton.Height = 30;
             sendButton.Location = new Point(10, listViewOrders.Bottom + 10);
@@ -150,7 +150,7 @@ namespace Torre_Di_Pizza
                     item.SubItems.Add(order.PhoneNumber);
                     item.SubItems.Add(string.Join(", ", order.Pizzas));
                     item.SubItems.Add(order.TotalPrice.ToString("F2"));
-                    item.SubItems.Add("Payé");   
+                    item.SubItems.Add("Paid");   
                     item.Tag = order;
                     listViewOrders.Items.Add(item);
 
@@ -162,8 +162,6 @@ namespace Torre_Di_Pizza
                                  autoAck: true,
                                  consumer: consumer);
         }
-
-        
 
         private OrderDetails DeserializeOrder(string message)
         {
