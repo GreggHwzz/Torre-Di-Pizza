@@ -31,3 +31,8 @@ To run this project, you will need:
 2. Start by running `Form1` to enter and submit new pizza orders.
 3. Open `Form2`, which will automatically start listening for new orders from the RabbitMQ queue and display them.
 4. Run `Form3` to handle order notifications and to perform customer-related actions.
+
+## Contributions
+
+To contribute to this project, please create a fork and submit a pull request with your proposed changes.
+
